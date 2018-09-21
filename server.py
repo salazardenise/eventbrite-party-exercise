@@ -45,9 +45,18 @@ def find_afterparties():
         #   the form data.
         # - (Make sure to save the JSON data from the response to the data
         #   variable so that it can display on the page as well.)
-        url = 'https://www.eventbriteapi.com/v3/events/search/?token=' + os.environ["EVENTBRITE_TOKEN"]
+        url = 'https://www.eventbriteapi.com/v3/events/search/'
+        payload = {
+            'token': os.environ["EVENTBRITE_TOKEN"],
+            'q': query,
+            'location.address': location,
+            'location.within': distance,
+            'sort_by': sort
+        }
 
-        response = requests.get(url)
+        response = requests.get(url, params=payload)
+        print(response.url)
+        print('\n\n\n\n\n')
 
         data = response.json()
         events = data['events']
