@@ -55,8 +55,6 @@ def find_afterparties():
         }
 
         response = requests.get(url, params=payload)
-        print(response.url)
-        print('\n\n\n\n\n')
 
         data = response.json()
         events = data['events']
